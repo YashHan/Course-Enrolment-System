@@ -1,0 +1,11 @@
+C:\Users\P12BA17\source\repos\Course Enrolment System\CourseEnrolmentSystem\CourseEnrolmentSystem\bin\Debug\CourseEnrolmentSystem.exe.config
+C:\Users\P12BA17\source\repos\Course Enrolment System\CourseEnrolmentSystem\CourseEnrolmentSystem\bin\Debug\CourseEnrolmentSystem.exe
+C:\Users\P12BA17\source\repos\Course Enrolment System\CourseEnrolmentSystem\CourseEnrolmentSystem\bin\Debug\CourseEnrolmentSystem.pdb
+C:\Users\P12BA17\source\repos\Course Enrolment System\CourseEnrolmentSystem\CourseEnrolmentSystem\obj\Debug\CourseEnrolmentSystem.csproj.AssemblyReference.cache
+C:\Users\P12BA17\source\repos\Course Enrolment System\CourseEnrolmentSystem\CourseEnrolmentSystem\obj\Debug\CourseEnrolmentSystem.Form1.resources
+C:\Users\P12BA17\source\repos\Course Enrolment System\CourseEnrolmentSystem\CourseEnrolmentSystem\obj\Debug\CourseEnrolmentSystem.Properties.Resources.resources
+C:\Users\P12BA17\source\repos\Course Enrolment System\CourseEnrolmentSystem\CourseEnrolmentSystem\obj\Debug\CourseEnrolmentSystem.csproj.GenerateResource.cache
+C:\Users\P12BA17\source\repos\Course Enrolment System\CourseEnrolmentSystem\CourseEnrolmentSystem\obj\Debug\CourseEnrolmentSystem.csproj.CoreCompileInputs.cache
+C:\Users\P12BA17\source\repos\Course Enrolment System\CourseEnrolmentSystem\CourseEnrolmentSystem\obj\Debug\CourseEnrolmentSystem.exe
+C:\Users\P12BA17\source\repos\Course Enrolment System\CourseEnrolmentSystem\CourseEnrolmentSystem\obj\Debug\CourseEnrolmentSystem.pdb
+C:\Users\P12BA17\source\repos\Course Enrolment System\CourseEnrolmentSystem\CourseEnrolmentSystem\obj\Debug\CourseEnrolmentSystem.register.resources
