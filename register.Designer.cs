@@ -188,6 +188,8 @@
             // IsFullTime
             // 
             this.IsFullTime.AutoSize = true;
+            this.IsFullTime.Checked = true;
+            this.IsFullTime.CheckState = System.Windows.Forms.CheckState.Checked;
             this.IsFullTime.Location = new System.Drawing.Point(94, 539);
             this.IsFullTime.Name = "IsFullTime";
             this.IsFullTime.Size = new System.Drawing.Size(115, 24);
@@ -201,7 +203,7 @@
             this.CourseNameLabel.AutoSize = true;
             this.CourseNameLabel.Location = new System.Drawing.Point(179, 362);
             this.CourseNameLabel.Name = "CourseNameLabel";
-            this.CourseNameLabel.Size = new System.Drawing.Size(0, 30);
+            this.CourseNameLabel.Size = new System.Drawing.Size(0, 20);
             this.CourseNameLabel.TabIndex = 19;
             // 
             // FeesLabel
@@ -209,7 +211,7 @@
             this.FeesLabel.AutoSize = true;
             this.FeesLabel.Location = new System.Drawing.Point(179, 410);
             this.FeesLabel.Name = "FeesLabel";
-            this.FeesLabel.Size = new System.Drawing.Size(81, 30);
+            this.FeesLabel.Size = new System.Drawing.Size(54, 20);
             this.FeesLabel.TabIndex = 20;
             this.FeesLabel.Text = "30000";
             // 

@@ -18,16 +18,32 @@ namespace CourseEnrolmentSystem
             InitializeComponent();
             CourseNameLabel.Text = courseName;
             StudentPoints = studentPoints;
-            CalculateFees();
+            CalculateFees(courseName);
         }
 
-        public void CalculateFees() 
-        { 
-            if(StudentPoints > 45 && IsFullTime.Checked == true)
+        public void CalculateFees(string courseName) 
+        {
+            int fees;
+            if (StudentPoints > 45 && IsFullTime.Checked == true)
             {
-                FeesLabel.Text = (0.90 * 25000).ToString();
+                fees = CourseEnrolmentSystemDAL.GetFees(true, courseName);
+                FeesLabel.Text = (0.90 * fees).ToString();
             }
+            else
+            {
+                if (IsFullTime.Checked == true)
+                {
+                    fees = CourseEnrolmentSystemDAL.GetFees(true, courseName);
+                }
+                else
+                {
+                    fees = CourseEnrolmentSystemDAL.GetFees(false, courseName);
+                }
+                FeesLabel.Text = fees.ToString();
+            }
+
         }
+
         private void register_Load(object sender, EventArgs e)
         {
 
@@ -40,8 +56,9 @@ namespace CourseEnrolmentSystem
             string email = Email.Text;
             string address = Address.Text;
             string contactNumber = ContactNumber.Text;
-
+            string courseName = CourseNameLabel.Text;
             bool isValid = true;
+            
 
             if (Validation.ValidateName(firstName) == false)
             {
@@ -71,26 +88,22 @@ namespace CourseEnrolmentSystem
 
             if (isValid == true)
             {
-                MessageBox.Show("You have registered successfully!");
+                // save the student details in the database student
+                CourseEnrolmentSystemDAL.RegisterUser(firstName, lastName, email, contactNumber, address, courseName, int.Parse(FeesLabel.Text));
+
+                // update the number of seats for the course
+                CourseEnrolmentSystemDAL.UpdateNumberOfSeats(courseName);
+                MessageBox.Show("Student has been successfully registered");
             }
             else
             {
                 MessageBox.Show("Please enter the correct details!");
             }
-
         }
 
         private void IsFullTime_CheckedChanged(object sender, EventArgs e)
         {
-            if (FeesLabel.Text == "25000" || FeesLabel.Text == "22500")
-            {
-                FeesLabel.Text = "30000";
-            }
-            else 
-            {
-                FeesLabel.Text = "25000";
-            }
-            CalculateFees();
+            CalculateFees(CourseNameLabel.Text);
         }
 
         private void BackButton_Click(object sender, EventArgs e)

@@ -178,5 +178,88 @@ namespace CourseEnrolmentSystem
                 return null;
             }
         }
+
+        public static void RegisterUser(string firstName, string lastName, string email, string contactNumber, string address, string courseName, int fees) 
+        {
+            string query = $"INSERT INTO Student(FirstName, LastName, Email, Address, ContactNumber, CourseName, Fees) VALUES(\'{firstName}\', \'{lastName}\'," +
+                $"\'{email}\', \'{address}\', \'{contactNumber}\', \'{courseName}\', {fees})";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(@"Data Source=DAYFORCEUF2UVFQ\SQLEXPRESS;Initial Catalog=CourseEnrolmentSystem;Integrated Security=True;"))
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+            
+        }
+
+        public static int GetFees(bool isFulTime, string courseName)
+        {
+
+
+            try
+            {
+                string query;
+                if (isFulTime == true)
+                {
+                    query = $"SELECT FullTimeCost FROM Course WHERE CourseName = \'{courseName}\'";
+                }
+                else
+                {
+                    query = $"SELECT PartTimeCost FROM Course WHERE CourseName = \'{courseName}\'";
+                }
+                int results;
+                using (SqlConnection conn = new SqlConnection(@"Data Source=DAYFORCEUF2UVFQ\SQLEXPRESS;Initial Catalog=CourseEnrolmentSystem;Integrated Security=True;"))
+                {
+                    conn.Open();
+
+                    // execute the command
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        // retrieve data obtained from query
+                        using (SqlDataReader dataReader = command.ExecuteReader())
+                        {
+                            dataReader.Read();
+                            results = dataReader.GetInt32(0);
+                        }
+                    }
+                }
+                return results;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+                return 0;
+            }
+
+        }
+
+        public static void UpdateNumberOfSeats(string courseName)
+        {
+            string query = $"UPDATE Course SET SeatsAvailable = SeatsAvailable + 1 WHERE CourseName = \'{courseName}\'";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(@"Data Source=DAYFORCEUF2UVFQ\SQLEXPRESS;Initial Catalog=CourseEnrolmentSystem;Integrated Security=True;"))
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+        }
     }
 }
