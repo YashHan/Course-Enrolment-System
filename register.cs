@@ -112,5 +112,14 @@ namespace CourseEnrolmentSystem
             availableCoursesForm.Show();
             this.Hide();
         }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            FirstName.Clear();
+            LastName.Clear();
+            Email.Clear();
+            Address.Clear();
+            ContactNumber.Clear();
+        }
     }
 }

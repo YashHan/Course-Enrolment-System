@@ -53,6 +53,7 @@
             this.clearButton.TabIndex = 0;
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
             // 
             // subject1
             // 
