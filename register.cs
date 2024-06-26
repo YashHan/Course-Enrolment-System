@@ -18,28 +18,29 @@ namespace CourseEnrolmentSystem
             InitializeComponent();
             CourseNameLabel.Text = courseName;
             StudentPoints = studentPoints;
-            CalculateFees(courseName);
+            FeesLabel.Text = CalculateFees(courseName).ToString();
         }
 
-        public void CalculateFees(string courseName) 
+        public double CalculateFees(string courseName) 
         {
             int fees;
             if (StudentPoints > 45 && IsFullTime.Checked == true)
             {
                 fees = CourseEnrolmentSystemDAL.GetFees(true, courseName);
-                FeesLabel.Text = (0.90 * fees).ToString();
+                return (0.90 * fees);
             }
             else
             {
                 if (IsFullTime.Checked == true)
                 {
                     fees = CourseEnrolmentSystemDAL.GetFees(true, courseName);
+                    
                 }
                 else
                 {
                     fees = CourseEnrolmentSystemDAL.GetFees(false, courseName);
                 }
-                FeesLabel.Text = fees.ToString();
+                return fees;
             }
 
         }
@@ -60,12 +61,12 @@ namespace CourseEnrolmentSystem
             bool isValid = true;
             
 
-            if (Validation.ValidateName(firstName) == false)
+            if (Validation.ValidateFirstName(firstName) == false)
             {
                 isValid = false;
             }
 
-            if(Validation.ValidateName(lastName) == false)
+            if(Validation.ValidateLastName(lastName) == false)
             {
                 isValid = false;
             }
@@ -97,13 +98,13 @@ namespace CourseEnrolmentSystem
             }
             else
             {
-                MessageBox.Show("Please enter the correct details!");
+                Validation.DisplayErrors();
             }
         }
 
         private void IsFullTime_CheckedChanged(object sender, EventArgs e)
         {
-            CalculateFees(CourseNameLabel.Text);
+            FeesLabel.Text = CalculateFees(CourseNameLabel.Text).ToString();
         }
 
         private void BackButton_Click(object sender, EventArgs e)

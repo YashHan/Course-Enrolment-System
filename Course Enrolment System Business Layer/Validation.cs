@@ -11,16 +11,32 @@ namespace CourseEnrolmentSystem
 {
     internal class Validation
     {
-        public static bool ValidateName(string name)
+        public static List<string> ValidationErrors = new List<string>();
+        public static bool ValidateFirstName(string name)
         {
             if (string.IsNullOrEmpty(name))
             {
-                MessageBox.Show("The name field cannot be empty");
+                ValidationErrors.Add("The First name field cannot be empty");
                 return false;
             }
             else if (name.Any(char.IsDigit))
             {
-                MessageBox.Show("The name cannot contain any digits");
+                ValidationErrors.Add("The First name cannot contain any digits");
+                return false;
+            }
+            return true;
+        }
+
+        public static bool ValidateLastName(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                ValidationErrors.Add("The Last name field cannot be empty");
+                return false;
+            }
+            else if (name.Any(char.IsDigit))
+            {
+                ValidationErrors.Add("The Last name cannot contain any digits");
                 return false;
             }
             return true;
@@ -33,12 +49,12 @@ namespace CourseEnrolmentSystem
             Regex regex = new Regex(regPattern);
             if (string.IsNullOrEmpty(email))
             {
-                MessageBox.Show("The email field cannot be empty");
+                ValidationErrors.Add("The email field cannot be empty");
                 return false;
             }
             else if (!regex.IsMatch(email))
             {
-                MessageBox.Show("Email entered is not in the correct format. It must be in the format \'Yash@gmail.com\'");
+                ValidationErrors.Add("Email entered is not in the correct format. It must be in the format \'Yash@gmail.com\'");
                 return false;
             }
             return true;
@@ -48,12 +64,12 @@ namespace CourseEnrolmentSystem
         {
             if (string.IsNullOrEmpty(contactNumber))
             {
-                MessageBox.Show("The contact number field cannot be empty");
+                ValidationErrors.Add("The contact number field cannot be empty");
                 return false;
             }
             else if (!contactNumber.All(char.IsDigit))
             {
-                MessageBox.Show("The contact number should contain only numbers");
+                ValidationErrors.Add("The contact number should contain only numbers");
                 return false;
             }
             return true;
@@ -63,10 +79,22 @@ namespace CourseEnrolmentSystem
         {
             if (string.IsNullOrEmpty(address))
             {
-                MessageBox.Show("The address cannot be empty");
+                ValidationErrors.Add("The address cannot be empty");
                 return false;
             }
             return true;
+        }
+
+        public static void DisplayErrors()
+        {
+            string errors = "";
+            foreach (string err in ValidationErrors)
+            {
+                errors = errors + err + "\n";
+            }
+            errors = errors + "PLEASE ENTER THE CORRECT DETAILS!" + "\n";
+            MessageBox.Show(errors);
+            ValidationErrors.Clear();
         }
     }
 
