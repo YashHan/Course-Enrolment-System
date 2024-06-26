@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Course Enrolment System Business Layer\AvailableCourseBL.cs" />
     <Compile Include="Course Enrolment System Business Layer\Calculate.cs" />
     <Compile Include="Course Enrolment System DAL\CourseEnrolmentSystemDAL.cs" />
     <Compile Include="Course Enrolment System Business Layer\CourseEnrolmentSystemValidation.cs" />

@@ -59,7 +59,7 @@ namespace CourseEnrolmentSystem
                 student.studentResults.Add(studentSubject5, subject5Grade);
 
                 // calculate the number of points of the student and get courses greater than the number of pounts of students
-                List<int> courseWithSufficientPoints = CourseEnrolmentSystemDAL.GetCourses(Calculate.CalculatePoints(student));
+                List<int> courseWithSufficientPoints = AvailableCourseBL.GetCourses(Calculate.CalculatePoints(student));
                 StudentPoints = Calculate.CalculatePoints(student);
 
                 if (courseWithSufficientPoints != null)
@@ -67,9 +67,9 @@ namespace CourseEnrolmentSystem
                     // check for prerequisites
                     foreach (int courseId in courseWithSufficientPoints)
                     {
-                        List<string> prerequisites = CourseEnrolmentSystemDAL.GetPrerequisites(courseId);
+                        List<string> prerequisites = AvailableCourseBL.GetPrerequisites(courseId);
                         // check if the student meets the prerequisites and if there are seats available
-                        if (student.CheckPrerequisites(prerequisites) && CourseEnrolmentSystemDAL.CheckSeatsAvailable(courseId))
+                        if (student.CheckPrerequisites(prerequisites) && AvailableCourseBL.CheckSeatsAvailable(courseId))
                         {
                             // if true then course is added to list of available courses for the student
                             availableCourses.Add(courseId);
@@ -80,7 +80,7 @@ namespace CourseEnrolmentSystem
                 if (availableCourses.Count > 0)
                 {
                     availableCourse.Text = "Available Courses";
-                    List<string> availableCoursesName = CourseEnrolmentSystemDAL.GetCoursesAvailable(availableCourses);
+                    List<string> availableCoursesName = AvailableCourseBL.GetCoursesAvailable(availableCourses);
                     DisplayCourses(availableCoursesName);
                 }
                 else

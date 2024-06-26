@@ -26,19 +26,19 @@ namespace CourseEnrolmentSystem
             int fees;
             if (StudentPoints > 45 && IsFullTime.Checked == true)
             {
-                fees = CourseEnrolmentSystemDAL.GetFees(true, courseName);
+                fees = AvailableCourseBL.GetFees(true, courseName);
                 return (0.90 * fees);
             }
             else
             {
                 if (IsFullTime.Checked == true)
                 {
-                    fees = CourseEnrolmentSystemDAL.GetFees(true, courseName);
+                    fees = AvailableCourseBL.GetFees(true, courseName);
                     
                 }
                 else
                 {
-                    fees = CourseEnrolmentSystemDAL.GetFees(false, courseName);
+                    fees = AvailableCourseBL.GetFees(false, courseName);
                 }
                 return fees;
             }
@@ -90,10 +90,10 @@ namespace CourseEnrolmentSystem
             if (isValid == true)
             {
                 // save the student details in the database student
-                CourseEnrolmentSystemDAL.RegisterUser(firstName, lastName, email, contactNumber, address, courseName, int.Parse(FeesLabel.Text));
+                AvailableCourseBL.RegisterUser(firstName, lastName, email, contactNumber, address, courseName, int.Parse(FeesLabel.Text));
 
                 // update the number of seats for the course
-                CourseEnrolmentSystemDAL.UpdateNumberOfSeats(courseName);
+                AvailableCourseBL.UpdateNumberOfSeats(courseName);
                 MessageBox.Show("Student has been successfully registered");
             }
             else
